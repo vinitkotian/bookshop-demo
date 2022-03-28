@@ -4,7 +4,7 @@ import BooksTable from "./BooksTable";
 
 describe('BooksTable', () => {
     it('should display only headers when there are no rows', function () {
-        const { getByText } = render(<BooksTable books={[{}]}/>);
+        const { getByText } = render(<BooksTable books={[]}/>);
 
         expect(getByText('Title')).toBeTruthy();
         expect(getByText('Author')).toBeTruthy();
@@ -27,7 +27,7 @@ describe('BooksTable', () => {
     });
 
     function books() {
-        return [{id: 1, title: "Malcom Gladwell", author: "Outliers", price: 200},
-            {id: 2, title: "J K Rowling", author: "Harry Potter", price: 500}];
+        return [{id: 1, name: "Malcom Gladwell", authorName: "Outliers", price: {currency: 'INR', amount: 200}},
+            {id: 2, name: "J K Rowling", authorName: "Harry Potter", price : {currency: 'INR', amount: 200}}];
     }
 })
