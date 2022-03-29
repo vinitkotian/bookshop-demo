@@ -1,5 +1,5 @@
 import React from "react";
-import Address from "./Address";
+import Address from "./OrderSummaryAddress";
 import {render} from '@testing-library/react'
 
 describe('Address', () => {
