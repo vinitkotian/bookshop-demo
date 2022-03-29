@@ -26,6 +26,16 @@ describe('BooksTable', () => {
         expect(getByText('J K Rowling')).toBeTruthy();
     });
 
+    it('should Loading... when book is selected', function () {
+        const { getByText } = render(<BooksTable
+            books={books()}
+            openBookDetailsView = {jest.fn()}
+            isBookDetailsOpen = {true}
+            backToHomePage = {jest.fn()}/>);
+
+        expect(getByText('Loading...')).toBeTruthy();
+    });
+
     function books() {
         return [{id: 1, name: "Malcom Gladwell", authorName: "Outliers", price: {currency: 'INR', amount: 200}},
             {id: 2, name: "J K Rowling", authorName: "Harry Potter", price : {currency: 'INR', amount: 200}}];

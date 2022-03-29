@@ -1,8 +1,15 @@
 import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
+import BookDetails from "./BookDetails";
 
 export default function BooksTable(props) {
     const books = props.books;
+    const [selectedBook,setSelectedBook] = React.useState("");
+
+    const selectBook = (book)=>{
+        setSelectedBook(book);
+        props.openBookDetailsView();
+    }
 
     const columns = [
         { field: 'bookImageUrl', headerName: 'Cover', width: 200 , renderCell: (params) => <img src={params.value} width={50} height={50}/>},
@@ -26,13 +33,24 @@ export default function BooksTable(props) {
     }
 
     return (
+        !props.isBookDetailsOpen ?
         <div style={{ height:700, width: '100%' }}>
             <DataGrid
                 rows={getRows()}
                 columns={columns}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
+                onCellClick={(params, event) => {
+                    selectBook(params.row);
+                    event.defaultMuiPrevented = true;
+                }}
             />
         </div>
-    );
+        :
+    <BookDetails
+        backToHomePage = {props.backToHomePage}
+        selectedBook = {selectedBook}
+    />
+
+    )
 }
