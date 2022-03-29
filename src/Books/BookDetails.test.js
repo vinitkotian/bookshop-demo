@@ -9,23 +9,11 @@ describe('BooksDetailsTest', () => {
     beforeEach(() => {
         BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookById());
     });
-    it('should Loading... when book is selected', function () {
-        const book = {id: 1, name: "Malcom Gladwell", authorName: "Outliers", price: {currency: 'INR', amount: 200}};
-        act(()=>{
-            const { getByText } = render(
-                <BookDetails
-                    backToHomePage = {jest.fn()}
-                    selectedBook = {book}
-                />
-            );
-        })
-        expect(screen.getByText('Loading...')).toBeTruthy();
-    });
 
     it('should load page when async call resolves', async function () {
         const book = {id: 1, name: "Malcom Gladwell", authorName: "Outliers", price: {currency: 'INR', amount: 200}};
-        act(()=>{
-            const { getByText } = render(
+        await act(async ()=>{
+             await render(
                 <BookDetails
                     backToHomePage = {jest.fn()}
                     selectedBook = {book}
