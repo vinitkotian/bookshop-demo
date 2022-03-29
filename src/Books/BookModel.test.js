@@ -10,7 +10,7 @@ describe('BookModel', () => {
         axios.get = jest.fn().mockResolvedValue({data: booksFactory()});
         const books = await BookModel.fetchAll();
         const url = `${env.REACT_APP_API_URL}/books`;
-        const headers = {"auth": {"password": "Password@12", "username": "system-user@bookshop.com"}};
+        const headers = {"auth": {"password": "Password@123", "username": "system-user@bookshop.com"}};
         expect(axios.get).toHaveBeenCalledWith(url, headers);
         expect(books).toHaveLength(2);
     });
