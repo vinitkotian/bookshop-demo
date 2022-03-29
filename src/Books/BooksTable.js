@@ -6,7 +6,7 @@ export default function BooksTable(props) {
 
     const columns = [
         { field: 'bookImageUrl', headerName: 'Cover', width: 200 , renderCell: (params) => <img src={params.value} width={50} height={50}/>},
-        { field: 'name', headerName: 'Name', width: 200 },
+        { field: 'name', headerName: 'Title', width: 200 },
         { field: 'authorName', headerName: 'Author', width: 200 },
         { field: 'price', headerName: 'Price', width: 200 }
     ];
