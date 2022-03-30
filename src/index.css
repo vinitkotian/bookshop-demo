@@ -24,7 +24,7 @@ code {
   display: flex;
   flex-direction:row;
   width:100%;
-  height:80vh;
+  height:100%;
   justify-content: space-around;
   padding:20px;
 }
@@ -39,6 +39,7 @@ code {
   flex-direction:column;
   justify-content: flex-start;
   align-items: center;
+  height:100%;
 }
 
 .nav-bar-book-details{
@@ -53,4 +54,43 @@ code {
 
 .home-arrow{
   margin:20px;
+}
+
+.reviews{
+  border:3px dot-dash black;
+  border-radius: 20px;
+  box-shadow: black 5px 5px 20px ;
+  margin:8px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  padding:1px;
+  width:500px;
+}
+
+.review-desc{
+  width:300px;
+  white-space: pre-wrap;
+}
+.ratings{
+  padding:2px;
+}
+
+.rating-span{
+  position: relative;
+  top:5px;
+}
+
+.warning{
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(231, 207, 93);
+  border:1px dot-dash black;
+  border-radius: 5px;
+  width:200px;
+  height:35px;
+  font-size: 20px;
 }
