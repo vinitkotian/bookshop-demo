@@ -16,11 +16,14 @@ export default function BookDetails(props) {
         setBookDetailsFromApi(response);
         setLoadingBookDetails(false);
     }
+    const areReviewsPresent = (reviewList) => {
+        return reviewList && reviewList.length > 0
+    }
     useEffect(() => {
         fetchBookDetails(props.selectedBook.id);
     }, [props.selectedBook.id])
 
-    if(!loadingBookDetails){
+    if (!loadingBookDetails) {
         return (
             <div className={"bookdetails-flex-ctn"}>
                 <div className={"nav-bar-book-details"} onClick={handleClose}>
@@ -30,7 +33,7 @@ export default function BookDetails(props) {
                 <div className={"book-details-row-ctn"}>
                     <div className={"book-image-col"}>
                         <img
-                            src={bookDetailsFromApi.bookImageUrl} style={{width:400,height:600}}/>
+                            src={bookDetailsFromApi.bookImageUrl} style={{width: 400, height: 600}}/>
                     </div>
                     <div className={"book-details-col"}>
                         <h1>{bookDetailsFromApi.name}</h1>
@@ -38,23 +41,25 @@ export default function BookDetails(props) {
                         <h2>{`Price: ${bookDetailsFromApi.price.amount} ${bookDetailsFromApi.price.currency}`}</h2>
                         <h2>Reviews:</h2>
                         {
-                            bookDetailsFromApi["bookReviewList"]?(
-                                bookDetailsFromApi["bookReviewList"]?.map((review)=>(
+                            areReviewsPresent(bookDetailsFromApi["bookReviewList"]) ? (
+                                bookDetailsFromApi["bookReviewList"].map((review) => (
                                         <div className={"reviews"}>
                                             <h4> User:{review.user.email}</h4>
-                                            <div className={"review-desc"}><h4>Review: {review["reviewDescription"]}</h4></div>
-                                            <h4>Rating: {review["rating"]} <span className={"rating-span"}><StarIcon/></span></h4>
+                                            <div className={"review-desc"}><h4>Review: {review["reviewDescription"]}</h4>
+                                            </div>
+                                            <h4>Rating: {review["rating"]} <span
+                                                className={"rating-span"}><StarIcon/></span></h4>
                                         </div>
                                     )
                                 )
-                            ):<h4>No reviews yet</h4>
+                            ) : <div className={"warning"}> ! No reviews yet</div>
                         }
                     </div>
                 </div>
             </div>
         )
-    }else{
-        return  <div className={"bookdetails-flex-ctn"}><h1>Loading...</h1></div>
+    } else {
+        return <div className={"bookdetails-flex-ctn"}><h1>Loading...</h1></div>
     }
 }
 

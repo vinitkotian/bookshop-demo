@@ -81,3 +81,16 @@ code {
   position: relative;
   top:5px;
 }
+
+.warning{
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(231, 207, 93);
+  border:1px dot-dash black;
+  border-radius: 5px;
+  width:200px;
+  height:35px;
+  font-size: 20px;
+}
