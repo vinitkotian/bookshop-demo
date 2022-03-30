@@ -21,7 +21,7 @@ export default function BookDetails(props) {
     }
     const checkIfOutOfStockAndShowWarning = ()=>{
         if(bookDetailsFromApi.quantityAvailable == 0 ){
-            return <div className={"warning-out-of-stock"}> ! Out Of Stock</div>
+            return <div className={"warning-out-of-stock"} data-testid={"out-of-stock-warning"}> ! Out Of Stock</div>
         }
     }
     useEffect(() => {
@@ -50,8 +50,8 @@ export default function BookDetails(props) {
                         <h2>Reviews:</h2>
                         {
                             areReviewsPresent(bookDetailsFromApi["bookReviewList"]) ? (
-                                bookDetailsFromApi["bookReviewList"].map((review) => (
-                                        <div className={"reviews"}>
+                                bookDetailsFromApi["bookReviewList"].map((review,index) => (
+                                        <div className={"reviews"} key={index}>
                                             <h4> User:{review.user.email}</h4>
                                             <div className={"review-desc"}><h4>Review: {review["reviewDescription"]}</h4>
                                             </div>
