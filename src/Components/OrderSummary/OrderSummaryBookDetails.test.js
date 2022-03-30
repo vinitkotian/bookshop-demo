@@ -6,7 +6,7 @@ describe('Address', () => {
 
    it('should display name of book from order details', function () {
       const { getByText } = render(<OrderSummaryBookDetails data={bookDetails()} />);
-      expect(getByText('Name:')).toBeTruthy();
+      expect(getByText('Book Name:')).toBeTruthy();
       expect(getByText('Java by Sam')).toBeTruthy();
       
    });
