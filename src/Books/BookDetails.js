@@ -19,6 +19,11 @@ export default function BookDetails(props) {
     const areReviewsPresent = (reviewList) => {
         return reviewList && reviewList.length > 0
     }
+    const checkIfOutOfStockAndShowWarning = ()=>{
+        if(bookDetailsFromApi.quantityAvailable == 0 ){
+            return <div className={"warning-out-of-stock"}> ! Out Of Stock</div>
+        }
+    }
     useEffect(() => {
         fetchBookDetails(props.selectedBook.id);
     }, [props.selectedBook.id])
@@ -39,6 +44,9 @@ export default function BookDetails(props) {
                         <h1>{bookDetailsFromApi.name}</h1>
                         <h2>{`Author Name: ${bookDetailsFromApi.authorName}`}</h2>
                         <h2>{`Price: ${bookDetailsFromApi.price.amount} ${bookDetailsFromApi.price.currency}`}</h2>
+                        {
+                            checkIfOutOfStockAndShowWarning()
+                        }
                         <h2>Reviews:</h2>
                         {
                             areReviewsPresent(bookDetailsFromApi["bookReviewList"]) ? (
@@ -58,7 +66,7 @@ export default function BookDetails(props) {
                 </div>
             </div>
         )
-    } else {
+    }else {
         return <div className={"bookdetails-flex-ctn"}><h1>Loading...</h1></div>
     }
 }

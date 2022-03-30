@@ -94,3 +94,16 @@ code {
   height:35px;
   font-size: 20px;
 }
+
+.warning-out-of-stock{
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(234, 67, 67);
+  border:1px dot-dash black;
+  border-radius: 5px;
+  width:200px;
+  height:35px;
+  font-size: 20px;
+}
