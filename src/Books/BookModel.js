@@ -7,6 +7,11 @@ export default class BookModel {
         return response.data;
     }
 
+    static fetchAllBySearch = async (search) => {
+        const response = await axios.get(`${env.REACT_APP_API_URL}/books?search=${search}`, this.authHeaders());
+        return response.data;
+    }
+
     static fetchDetailsById = async (id) => {
         const response = await axios.get(`${env.REACT_APP_API_URL}/book/${id}`, this.authHeaders());
         return response.data;
