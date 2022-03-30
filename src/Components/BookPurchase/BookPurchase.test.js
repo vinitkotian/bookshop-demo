@@ -31,7 +31,6 @@ describe('Book Purchase Test', () => {
     const city = await screen.getByTestId('city');
     const state = await screen.getByTestId('state');
     const pincode = await screen.getByTestId('pincode');
-    const country = await screen.getByTestId('country');
     const button = await screen.getByTestId('submit');
     fireEvent.change(quantity, { target: { value: '12' } });
     fireEvent.change(quantity, { target: { value: '0' } });
@@ -40,7 +39,6 @@ describe('Book Purchase Test', () => {
     fireEvent.change(city, { target: { value: 'Tumkur' } });
     fireEvent.change(state, { target: { value: 'Karnataka' } });
     fireEvent.change(pincode, { target: { value: '572103' } });
-    fireEvent.change(country, { target: { value: 'India' } });
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });

@@ -72,7 +72,6 @@ describe('Book Purchase Container Test', () => {
     const city = await screen.getByTestId('city');
     const state = await screen.getByTestId('state');
     const pincode = await screen.getByTestId('pincode');
-    const country = await screen.getByTestId('country');
     const button = await screen.getByTestId('submit');
     fireEvent.change(quantity, { target: { value: '12' } });
     fireEvent.change(quantity, { target: { value: '0' } });
