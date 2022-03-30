@@ -1,7 +1,7 @@
 import BookModel from "./BookModel";
 import booksFactory from "./__factory__/books-factory";
 import axios from 'axios';
-import bookById from "./__factory__/book-details";
+import {bookById} from "./__factory__/book-details";
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 const env = runtimeEnv();
 jest.mock('axios');
