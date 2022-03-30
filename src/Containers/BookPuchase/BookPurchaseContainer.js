@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import BookPurchase from '../../Components/BookPurchase/BookPuchase';
 import httpService from '../../Utils/httpService';
-import { useNavigate } from 'react-router-dom';
 
 const BookPurchaseContainer = () => {
   let history = useNavigate();
-
   let { bookId } = useParams();
 
   const [bookDetails, setBookDetails] = useState({});

@@ -11,7 +11,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
     'city': '',
     'state': '',
     'pincode': '',
-    'country': '',
+    'country': 'India',
   });
 
   const onChangeInput = (e) => {
@@ -112,7 +112,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
           />
         </Grid>
         <Grid container item md={12} sx={{ marginTop: 1 }} spacing={2}>
-          <Grid md={3} item>
+          <Grid md={4} item>
             <TextField
               inputProps={{ 'data-testid': 'city' }}
               fullWidth={true}
@@ -123,7 +123,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
               onChange={onChangeInput}
             />
           </Grid>
-          <Grid md={3} item>
+          <Grid md={4} item>
             <TextField
               inputProps={{ 'data-testid': 'state' }}
               fullWidth={true}
@@ -134,24 +134,13 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
               onChange={onChangeInput}
             />
           </Grid>
-          <Grid md={3} item>
+          <Grid md={4} item>
             <TextField
               inputProps={{ 'data-testid': 'pincode' }}
               fullWidth={true}
               helperText={labels.bookPurchase.pincode}
               id="pincode"
               label={labels.bookPurchase.pincode}
-              required={true}
-              onChange={onChangeInput}
-            />
-          </Grid>
-          <Grid md={3} item>
-            <TextField
-              inputProps={{ 'data-testid': 'country' }}
-              fullWidth={true}
-              helperText={labels.bookPurchase.country}
-              id="country"
-              label={labels.bookPurchase.country}
               required={true}
               onChange={onChangeInput}
             />
