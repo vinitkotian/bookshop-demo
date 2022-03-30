@@ -15,6 +15,7 @@ const labels = {
     pincode: 'Pincode',
     country: 'Country',
     orderNow: 'Order Now',
+    purchaseNow: 'Purchase Now',
   },
 };
 export default labels;
