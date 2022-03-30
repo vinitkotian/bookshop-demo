@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import "../index.css";
 import BookModel from "./BookModel"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import {Button} from "@mui/material";
+import StarIcon from '@mui/icons-material/Star';
 
 
 export default function BookDetails(props) {
-    const [bookDetailsFromApi, setBookDetailsFromApi] = React.useState({});
+    const [bookDetailsFromApi, setBookDetailsFromApi] = React.useState('');
     const [loadingBookDetails, setLoadingBookDetails] = React.useState(true);
     const handleClose = () => {
         props.backToHomePage();
@@ -20,8 +20,8 @@ export default function BookDetails(props) {
         fetchBookDetails(props.selectedBook.id);
     }, [props.selectedBook.id])
 
-    return (
-        !loadingBookDetails ?
+    if(!loadingBookDetails){
+        return (
             <div className={"bookdetails-flex-ctn"}>
                 <div className={"nav-bar-book-details"} onClick={handleClose}>
                     <ArrowBackIosNewIcon className={"home-arrow"}/>
@@ -36,12 +36,25 @@ export default function BookDetails(props) {
                         <h1>{bookDetailsFromApi.name}</h1>
                         <h2>{`Author Name: ${bookDetailsFromApi.authorName}`}</h2>
                         <h2>{`Price: ${bookDetailsFromApi.price.amount} ${bookDetailsFromApi.price.currency}`}</h2>
-                        <Button variant="contained" style={{margin: "5px"}}>Buy Now</Button>
+                        <h2>Reviews:</h2>
+                        {
+                            bookDetailsFromApi["bookReviewList"]?(
+                                bookDetailsFromApi["bookReviewList"]?.map((review)=>(
+                                        <div className={"reviews"}>
+                                            <h4> User:{review.user.email}</h4>
+                                            <div className={"review-desc"}><h4>Review: {review["reviewDescription"]}</h4></div>
+                                            <h4>Rating: {review["rating"]} <span className={"rating-span"}><StarIcon/></span></h4>
+                                        </div>
+                                    )
+                                )
+                            ):<h4>No reviews yet</h4>
+                        }
                     </div>
                 </div>
-            </div> :
-            <h1>Loading...</h1>
-
-    )
+            </div>
+        )
+    }else{
+        return  <div className={"bookdetails-flex-ctn"}><h1>Loading...</h1></div>
+    }
 }
 
