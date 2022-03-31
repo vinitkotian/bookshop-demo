@@ -10,17 +10,4 @@ describe('Order Summary', () => {
     );
     expect(getByText('Order Summary')).toBeInTheDocument();
   });
-  it('should have book name in the order summary', async function () {
-    const { getByText } = render(
-      <OrderSummaryContainer orderDetails={orderDetails()} />
-    );
-    expect(getByText('Book Name:')).toBeInTheDocument();
-  });
-
-  it('should have book name in the order summary', async function () {
-    const { getByText } = render(
-      <OrderSummaryContainer orderDetails={orderDetails()} />
-    );
-    expect(getByText('Author Name:')).toBeInTheDocument();
-  });
 });

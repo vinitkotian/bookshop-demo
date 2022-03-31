@@ -33,7 +33,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
     e.preventDefault();
     const body = {
       bookId: 2,
-      quantity: 2,
+      quantity: quantity,
       address: {
         lineNoOne: inputValues['address-line-1'],
         lineNoTwo: inputValues['address-line-2'],

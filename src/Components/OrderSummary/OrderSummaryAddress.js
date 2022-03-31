@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Typography } from '@mui/material';
 
 export default function Address({ address }) {
   const createData = (name, value) => {
@@ -28,9 +29,10 @@ export default function Address({ address }) {
   ];
   return (
     <>
-      <h3 align={'center'}>{labels.orderSummary.deliveryDetails}</h3>
-
-      <TableContainer component={Paper}>
+      <Typography variant="h5" align={'center'} sx={{ marginTop: '15px' }}>
+        {labels.orderSummary.deliveryDetails}
+      </Typography>
+      <TableContainer component={Paper} sx={{ marginTop: '15px' }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             {rows.map((row) => (
@@ -51,14 +53,6 @@ export default function Address({ address }) {
           </TableBody>
         </Table>
       </TableContainer>
-      <div>
-        <span>Address Line 1:</span> <span>{address.lineNoOne}</span>
-        <span>Address Line 2:</span> <span>{address.lineNoTwo}</span>
-        <span>City:</span> <span>{address.city}</span>
-        <span>State:</span> <span>{address.state}</span>
-        <span>PIN Code:</span> <span>{address.pinCode}</span>
-        <span>Country:</span> <span>{address.country}</span>
-      </div>
     </>
   );
 }

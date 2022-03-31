@@ -7,19 +7,7 @@ describe('Address', () => {
     const { getByText } = render(
       <OrderSummaryBookDetails bookDetails={bookDetails()} />
     );
-    expect(getByText('Book Name:')).toBeTruthy();
     expect(getByText('Java by Sam')).toBeTruthy();
-  });
-
-  it('should display authorName of book from order details', function () {
-    const { getByText } = render(
-      <OrderSummaryBookDetails
-        bookDetails={bookDetails()}
-        quantity={getQuantity()}
-      />
-    );
-    expect(getByText('Author Name:')).toBeTruthy();
-    expect(getByText('Danish Lilly')).toBeTruthy();
   });
 
   it('should display quantity of book from order details', function () {
@@ -29,7 +17,6 @@ describe('Address', () => {
         quantity={getQuantity()}
       />
     );
-    expect(getByText('Quantity:')).toBeTruthy();
     expect(getByText('2')).toBeTruthy();
   });
 
@@ -40,8 +27,7 @@ describe('Address', () => {
         quantity={getQuantity()}
       />
     );
-    expect(getByText('Price:')).toBeTruthy();
-    expect(getByText('1000.28 INR')).toBeTruthy();
+    expect(getByText('₹ 1000.28')).toBeTruthy();
   });
   function bookDetails() {
     return {

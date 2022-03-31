@@ -20,10 +20,24 @@ const labels = {
   orderSummary: {
     heading: 'Order Summary',
     deliveryDetails: 'Delivery details',
+    orderDetails: 'Order Details',
   },
   orderSummaryAddress: {
     shippingAddress: 'Shipping Address',
     shippingCountry: 'Shipping Country',
+  },
+  orderSummaryBookDetails: {
+    table: {
+      slNo: 'Sl. No',
+      bookName: 'Book Name',
+      noOfCopies: 'No of Copies',
+      unitPrice: 'Unit Price',
+      shippingCost: 'Shipping Cost',
+      totalCost: 'Total Cost',
+    },
+  },
+  paymentDetails: {
+    heading: 'Payment will be collected upon delivery.',
   },
 };
 export default labels;

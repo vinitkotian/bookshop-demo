@@ -3,6 +3,7 @@ import OrderSummaryBookDetails from '../../Components/OrderSummary/OrderSummaryB
 import OrderSummaryAddress from '../../Components/OrderSummary/OrderSummaryAddress';
 import labels from '../../Config/labels';
 import { Container, Typography } from '@mui/material';
+import PaymentDetails from '../../Components/OrderSummary/PaymentDetails';
 
 const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
   return (
@@ -15,6 +16,7 @@ const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
         bookDetails={orderDetails.bookDetails}
         quantity={orderDetails.quantity}
       />
+      <PaymentDetails />
     </Container>
   );
 };
