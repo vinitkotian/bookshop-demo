@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import OrderSummaryContainer from './OrderSummaryContainer';
 import orderDetails from './__factory__/OrderDetails-factory';
 

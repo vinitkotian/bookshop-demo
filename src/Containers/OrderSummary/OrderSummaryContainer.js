@@ -7,8 +7,8 @@ import { Container, Typography } from '@mui/material';
 const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
   return (
     <Container data-testid="order-summary-container">
-      <Typography>
-        <h1 align={'center'}>{labels.orderSummary.heading}</h1>
+      <Typography variant="h3" align={'center'} sx={{ marginTop: '15px' }}>
+        {labels.orderSummary.heading}
       </Typography>
       <OrderSummaryAddress address={orderDetails.address} />
       <OrderSummaryBookDetails
