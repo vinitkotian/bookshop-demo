@@ -3,7 +3,7 @@ import './App.css';
 import ListBooksContainer from './Books/ListBooksContainer';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import BookPurchaseContainer from './Containers/BookPuchase/BookPurchaseContainer';
-import BookDetails from "./Components/BookDetails/BookDetails";
+import BookDetailsContainer from "./Containers/BookDetails/BookDetailsContainer";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
                     />
                     <Route
                         path={'/bookDetails/:bookId'}
-                        element={<BookDetails/>}
+                        element={<BookDetailsContainer/>}
                     />
                 </Routes>
             </div>
