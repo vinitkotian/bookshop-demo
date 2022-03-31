@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import BookDetails from './BookDetails';
+import BookDetails from '../Components/BookDetails/BookDetails';
 import { Button } from '@mui/material';
 import labels from '../Config/labels';
 import { useNavigate } from 'react-router-dom';
@@ -9,12 +9,6 @@ export default function BooksTable(props) {
   let history = useNavigate();
 
   const books = props.books;
-  const [selectedBook, setSelectedBook] = React.useState('');
-
-  const selectBook = (book) => {
-    setSelectedBook(book);
-    props.openBookDetailsView();
-  };
 
   const columns = [
     {
@@ -48,6 +42,12 @@ export default function BooksTable(props) {
     history(`/purchase/${id}`);
   };
 
+  const openBookDetails = (params,e) =>{
+    e.stopPropagation(params);
+    history(`/bookDetails/${params.row.id}`);
+  }
+
+
   function getRows() {
     const rows = [];
     books.map((book) => {
@@ -63,23 +63,15 @@ export default function BooksTable(props) {
     return rows;
   }
 
-  return !props.isBookDetailsOpen ? (
-    <div style={{ height: 700, width: '100%' }}>
-      <DataGrid
-        rows={getRows()}
-        columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        onCellClick={(params, event) => {
-          selectBook(params.row);
-          event.defaultMuiPrevented = true;
-        }}
-      />
-    </div>
-  ) : (
-    <BookDetails
-      backToHomePage={props.backToHomePage}
-      selectedBook={selectedBook}
-    />
-  );
+  return (
+      <div style={{ height: 700, width: '100%' }}>
+        <DataGrid
+            rows={getRows()}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            onCellClick={openBookDetails}
+        />
+      </div>
+  )
 }

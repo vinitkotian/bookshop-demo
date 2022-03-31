@@ -1,18 +1,21 @@
 import React, {useEffect} from "react";
-import "../index.css";
-import BookModel from "./BookModel"
+import "../../index.css";
+import BookModel from "../../Books/BookModel"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import StarIcon from '@mui/icons-material/Star';
+import {useNavigate, useParams} from "react-router-dom";
 
 
 export default function BookDetails(props) {
+    let history = useNavigate();
+    let { bookId } = useParams()
     const [bookDetailsFromApi, setBookDetailsFromApi] = React.useState('');
     const [loadingBookDetails, setLoadingBookDetails] = React.useState(true);
     const handleClose = () => {
-        props.backToHomePage();
+        history("/")
     }
-    const fetchBookDetails = async () => {
-        const response = await BookModel.fetchDetailsById(props.selectedBook.id);
+    const fetchBookDetails = async (id) => {
+        const response = await BookModel.fetchDetailsById(id);
         setBookDetailsFromApi(response);
         setLoadingBookDetails(false);
     }
@@ -21,22 +24,18 @@ export default function BookDetails(props) {
     }
     const generateStockDetails = ()=>{
         if(bookDetailsFromApi.quantityAvailable == 0 ){
-            return <div className={"warning out-of-stock"} data-testid={"out-of-stock-warning"}> ! Out Of Stock</div>
+            return <div className={"warning out-of-stock"}> ! Out Of Stock</div>
         }else if(bookDetailsFromApi.quantityAvailable > 0){
-            return <div className={"warning in-stock"} data-testid={"out-of-stock-warning"}>In Stock</div>
+            return <div className={"warning in-stock"} >In Stock</div>
         }
     }
     useEffect(() => {
-        fetchBookDetails(props.selectedBook.id);
-    }, [props.selectedBook.id])
+        fetchBookDetails(bookId);
+    }, [bookId])
 
     if (!loadingBookDetails) {
         return (
             <div className={"bookdetails-flex-ctn"}>
-                <div className={"nav-bar-book-details"} onClick={handleClose}>
-                    <ArrowBackIosNewIcon className={"home-arrow"}/>
-                    <h3>Back To Results</h3>
-                </div>
                 <div className={"book-details-row-ctn"}>
                     <div className={"book-image-col"}>
                         <img

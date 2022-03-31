@@ -2,7 +2,7 @@ export function bookById() {
     return {id: 1, name: "Malcom Gladwell", authorName: "Outliers", price: {currency: 'INR', amount: 200}};
 }
 
-export function bookByIdWithInventoryNotAvailable() {
+export function bookWithInventoryReviewNotAvailable() {
     return {
         id: 5,
         name: "Arabian Nights",
@@ -13,21 +13,11 @@ export function bookByIdWithInventoryNotAvailable() {
         },
         bookImageUrl: "https://images-na.ssl-images-amazon.com/images/I/81cedjKnBYS.jpg",
         quantityAvailable: 0,
-        bookReviewList: [
-            {
-                id: 5,
-                reviewDescription: "The pages are average but let's be honest, we don't buy books because of the quality of the pages. Absolutely wonderful.",
-                rating: 4.5,
-                user: {
-                    id: "0",
-                    email: "guest@gmail.com"
-                }
-            }
-        ]
+        bookReviewList: []
     }
 }
 
-export function bookByIdWithInventoryAvailable() {
+export function bookWithInventoryReviewAvailable() {
     return {
         id: 5,
         name: "Arabian Nights : Second Edition",
