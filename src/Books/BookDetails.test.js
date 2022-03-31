@@ -2,7 +2,7 @@ import React from "react";
 import {render, waitFor, screen} from '@testing-library/react'
 import BookDetails from "./BookDetails";
 import BookModel from "./BookModel";
-import {bookById,bookByIdWithInventory} from "./__factory__/book-details";
+import {bookById, bookByIdWithInventoryNotAvailable, bookByIdWithInventoryAvailable} from "./__factory__/book-details";
 import {act} from "@testing-library/react";
 
 describe('BooksDetailsTest', () => {
@@ -26,8 +26,8 @@ describe('BooksDetailsTest', () => {
     });
 
     it('should show out of stock warning', async function () {
-        BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookByIdWithInventory());
-        const book = bookByIdWithInventory();
+        BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookByIdWithInventoryNotAvailable());
+        const book = bookByIdWithInventoryNotAvailable();
         await act(async ()=>{
             await render(
                 <BookDetails
@@ -44,8 +44,8 @@ describe('BooksDetailsTest', () => {
     });
 
     it('should show review element when review list has reviews', async function () {
-        BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookByIdWithInventory());
-        const book = bookByIdWithInventory();
+        BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookByIdWithInventoryAvailable());
+        const book = bookByIdWithInventoryAvailable();
         await act(async ()=>{
             await render(
                 <BookDetails
@@ -58,6 +58,24 @@ describe('BooksDetailsTest', () => {
         await waitFor(() => {
             expect(BookModel.fetchDetailsById).toHaveBeenCalled();
             expect(screen.getByText("User:guest@gmail.com")).toBeTruthy();
+        })
+    });
+
+    it('should show in stock when inventory is available', async function () {
+        BookModel.fetchDetailsById = jest.fn().mockResolvedValue(bookByIdWithInventoryAvailable());
+        const book = bookByIdWithInventoryAvailable();
+        await act(async ()=>{
+            await render(
+                <BookDetails
+                    backToHomePage = {jest.fn()}
+                    selectedBook = {book}
+                />
+            );
+        })
+
+        await waitFor(() => {
+            expect(BookModel.fetchDetailsById).toHaveBeenCalled();
+            expect(screen.getByText("In Stock")).toBeTruthy();
         })
     });
 })

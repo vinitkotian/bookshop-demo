@@ -19,9 +19,11 @@ export default function BookDetails(props) {
     const areReviewsPresent = (reviewList) => {
         return reviewList && reviewList.length > 0
     }
-    const checkIfOutOfStockAndShowWarning = ()=>{
+    const generateStockDetails = ()=>{
         if(bookDetailsFromApi.quantityAvailable == 0 ){
-            return <div className={"warning-out-of-stock"} data-testid={"out-of-stock-warning"}> ! Out Of Stock</div>
+            return <div className={"warning out-of-stock"} data-testid={"out-of-stock-warning"}> ! Out Of Stock</div>
+        }else if(bookDetailsFromApi.quantityAvailable > 0){
+            return <div className={"warning in-stock"} data-testid={"out-of-stock-warning"}>In Stock</div>
         }
     }
     useEffect(() => {
@@ -45,7 +47,7 @@ export default function BookDetails(props) {
                         <h2>{`Author Name: ${bookDetailsFromApi.authorName}`}</h2>
                         <h2>{`Price: ${bookDetailsFromApi.price.amount} ${bookDetailsFromApi.price.currency}`}</h2>
                         {
-                            checkIfOutOfStockAndShowWarning()
+                            generateStockDetails()
                         }
                         <h2>Reviews:</h2>
                         {
@@ -60,7 +62,7 @@ export default function BookDetails(props) {
                                         </div>
                                     )
                                 )
-                            ) : <div className={"warning"}> ! No reviews yet</div>
+                            ) : <div className={"warning no-reviews-warning"}> ! No reviews yet</div>
                         }
                     </div>
                 </div>
