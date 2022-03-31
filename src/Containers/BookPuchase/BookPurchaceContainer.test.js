@@ -1,10 +1,11 @@
 import { act, render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import httpService from '../../Utils/httpService';
 import BookPurchaseContainer from './BookPurchaseContainer';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Axios from 'axios';
+import BookPurchase from '../../Components/BookPurchase/BookPuchase';
+import OrderSummaryContainer from '../OrderSummary/OrderSummaryContainer';
 jest.mock('axios');
 const env = runtimeEnv();
 
@@ -34,9 +35,7 @@ describe('Book Purchase Container Test', () => {
     });
   });
 
-  it('should load Book purchase container', async function () {
-    const url = `/book/1`;
-    httpService().get = jest.fn();
+  it('should load Book purchase container with Get Api call in the useEffect hook', async function () {
     await act(async () => {
       await render(
         <Router>
@@ -47,7 +46,7 @@ describe('Book Purchase Container Test', () => {
     expect(Axios.get).toHaveBeenCalled();
   });
 
-  it('Should call the post call', async function () {
+  it('Order summary page should be rendered when user clicked on the view order summary', async function () {
     await act(async () => {
       await render(
         <Router>
@@ -55,17 +54,7 @@ describe('Book Purchase Container Test', () => {
         </Router>
       );
     });
-    expect(Axios.get).toHaveBeenCalled();
-  });
 
-  it('should call the post method', async function () {
-    await act(async () => {
-      await render(
-        <Router>
-          <BookPurchaseContainer />
-        </Router>
-      );
-    });
     const quantity = await screen.getByTestId('quantity');
     const addressLine1 = await screen.getByTestId('address-line-1');
     const addressLine2 = await screen.getByTestId('address-line-2');
@@ -81,6 +70,17 @@ describe('Book Purchase Container Test', () => {
     fireEvent.change(state, { target: { value: 'Karnataka' } });
     fireEvent.change(pincode, { target: { value: '572103' } });
     fireEvent.click(button);
-    expect(Axios.post).toHaveBeenCalled();
+    expect(screen.queryByTestId('order-summary-container')).toBeTruthy();
+  });
+
+  it('Order Summary should not be displayed in the intial render', async () => {
+    await act(async () => {
+      await render(
+        <Router>
+          <BookPurchaseContainer />
+        </Router>
+      );
+    });
+    expect(screen.queryByTestId('order-summary-container')).not.toBeTruthy();
   });
 });

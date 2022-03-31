@@ -14,7 +14,7 @@ const labels = {
     state: 'State',
     pincode: 'Pincode',
     country: 'Country',
-    orderNow: 'Order Now',
+    orderNow: 'View Order Summary',
     purchaseNow: 'Purchase Now',
   },
 };
