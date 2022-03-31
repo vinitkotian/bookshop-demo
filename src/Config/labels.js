@@ -21,6 +21,7 @@ const labels = {
     heading: 'Order Summary',
     deliveryDetails: 'Delivery details',
     orderDetails: 'Order Details',
+    confirmOrder: 'Confirm Order',
   },
   orderSummaryAddress: {
     shippingAddress: 'Shipping Address',
@@ -38,6 +39,10 @@ const labels = {
   },
   paymentDetails: {
     heading: 'Payment will be collected upon delivery.',
+  },
+  orderSuccess: {
+    successMessage: 'Order Placed SuccessFully',
+    continueShopping: 'Continue Shopping',
   },
 };
 export default labels;

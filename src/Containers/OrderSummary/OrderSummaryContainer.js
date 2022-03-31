@@ -2,7 +2,7 @@ import React from 'react';
 import OrderSummaryBookDetails from '../../Components/OrderSummary/OrderSummaryBookDetails';
 import OrderSummaryAddress from '../../Components/OrderSummary/OrderSummaryAddress';
 import labels from '../../Config/labels';
-import { Container, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
 import PaymentDetails from '../../Components/OrderSummary/PaymentDetails';
 
 const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
@@ -17,6 +17,16 @@ const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
         quantity={orderDetails.quantity}
       />
       <PaymentDetails />
+      <Button
+        data-testid="submit"
+        variant="contained"
+        fullWidth
+        type="submit"
+        onClick={onSubmit}
+        sx={{ marginY: '20px' }}
+      >
+        {labels.orderSummary.confirmOrder}
+      </Button>
     </Container>
   );
 };

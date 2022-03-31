@@ -3,21 +3,29 @@ import { useParams, useNavigate } from 'react-router-dom';
 import BookPurchase from '../../Components/BookPurchase/BookPuchase';
 import OrderSummaryContainer from '../OrderSummary/OrderSummaryContainer';
 import BookPurchaseApiModel from '../../Components/BookPurchase/BookPurchaseApiModel';
+import BookPurchaseSuccess from '../../Components/BookPurchase/BookPurchaseSuccess';
 
 const BookPurchaseContainer = () => {
-  let history = useNavigate();
-  let { bookId } = useParams();
+  let navigate = useNavigate();
 
+  let { bookId } = useParams();
   const [bookDetails, setBookDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [orderDetails, setOrderDetails] = useState(null);
+  const [reqBody, setReqBody] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-  const onPurchaseSubmit = async (body) => {
-    const response = await BookPurchaseApiModel.placeBookOrder(body);
+  const onPurchaseSubmit = async () => {
+    const response = await BookPurchaseApiModel.placeBookOrder(reqBody);
     if (response.status === 200) {
-      const orderId = response.data.id;
-      history(`/order/summary/${orderId}`);
+      setSuccess(true);
+      setOrderDetails(null);
     }
+  };
+
+  const goTohome = () => {
+    setSuccess(false);
+    navigate('/', { replace: true });
   };
 
   const showOrderSummaryPage = (data) => {
@@ -25,6 +33,7 @@ const BookPurchaseContainer = () => {
       bookDetails: bookDetails,
       ...data,
     };
+    setReqBody(data);
     setOrderDetails(newState);
   };
 
@@ -40,6 +49,10 @@ const BookPurchaseContainer = () => {
   }, [bookId]);
 
   if (loading) return <h1>loading</h1>;
+
+  if (success) {
+    return <BookPurchaseSuccess goTohome={goTohome} />;
+  }
 
   if (orderDetails) {
     return (
