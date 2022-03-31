@@ -85,37 +85,39 @@ export default class ListBooksContainer extends React.Component {
 
     render() {
 
-        return <div>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                        >
-                            ThoughtWorks Book Shop
-                        </Typography>
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                                onChange={(e) => this.searchItems(e.target.value)}
-                            />
-                        </Search>
-                    </Toolbar>
-                </AppBar>
-            </Box>
-            <BooksTable
-                books={this.state.books}
-                openBookDetailsView = {this.openBookDetailsView}
-                isBookDetailsOpen = {this.state.isBookDetailsOpen}
-                backToHomePage = {this.backToHomePage}
-            />
-        </div>
+        return (
+            <div>
+                <Box sx={{ flexGrow: 1 }}>
+                    <AppBar position="static">
+                        <Toolbar>
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="div"
+                                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                            >
+                                ThoughtWorks Book Shop
+                            </Typography>
+                            <Search hidden={this.state.isBookDetailsOpen}>
+                                <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper>
+                                <StyledInputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                    onChange={(e) => this.searchItems(e.target.value)}
+                                />
+                            </Search>
+                        </Toolbar>
+                    </AppBar>
+                </Box>
+                <BooksTable
+                    books={this.state.books}
+                    openBookDetailsView = {this.openBookDetailsView}
+                    isBookDetailsOpen = {this.state.isBookDetailsOpen}
+                    backToHomePage = {this.backToHomePage}
+                />
+            </div>
+        )
     }
 }
