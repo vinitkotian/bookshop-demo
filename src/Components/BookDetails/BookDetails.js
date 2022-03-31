@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import "../index.css";
-import BookModel from "./BookModel"
+import "../../index.css";
+import BookModel from "../../Books/BookModel"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import StarIcon from '@mui/icons-material/Star';
 
@@ -21,9 +21,9 @@ export default function BookDetails(props) {
     }
     const generateStockDetails = ()=>{
         if(bookDetailsFromApi.quantityAvailable == 0 ){
-            return <div className={"warning out-of-stock"} data-testid={"out-of-stock-warning"}> ! Out Of Stock</div>
+            return <div className={"warning out-of-stock"}> ! Out Of Stock</div>
         }else if(bookDetailsFromApi.quantityAvailable > 0){
-            return <div className={"warning in-stock"} data-testid={"out-of-stock-warning"}>In Stock</div>
+            return <div className={"warning in-stock"} >In Stock</div>
         }
     }
     useEffect(() => {

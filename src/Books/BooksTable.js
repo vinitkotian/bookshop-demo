@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import BookDetails from './BookDetails';
+import BookDetails from '../Components/BookDetails/BookDetails';
 import { Button } from '@mui/material';
 import labels from '../Config/labels';
 import { useNavigate } from 'react-router-dom';
