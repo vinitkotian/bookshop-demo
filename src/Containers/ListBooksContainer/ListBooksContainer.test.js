@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import ListBooksContainer from './ListBooksContainer';
-import BookModel from './BookModel';
-import booksFactory from './__factory__/books-factory';
+import BookModel from "../../BooksModel/BookModel";
+import booksFactory from '../../BooksModel/__factory__/books-factory';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-jest.mock('./BookModel');
+jest.mock("../../BooksModel/BookModel");
 
 describe('ListBooks', () => {
   beforeEach(() => {

@@ -1,8 +1,8 @@
 import React from "react";
 import {render, waitFor, screen} from '@testing-library/react'
 import BookDetailsContainer from "./BookDetailsContainer";
-import BookModel from "../../Books/BookModel";
-import {bookWithInventoryReviewNotAvailable, bookWithInventoryReviewAvailable} from "../../Books/__factory__/book-details";
+import BookModel from "../../BooksModel/BookModel";
+import {bookWithInventoryReviewNotAvailable, bookWithInventoryReviewAvailable} from "../../BooksModel/__factory__/book-details";
 import {act} from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
 

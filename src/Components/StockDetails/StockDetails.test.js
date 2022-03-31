@@ -1,7 +1,7 @@
 import {
     bookWithInventoryReviewAvailable,
     bookWithInventoryReviewNotAvailable
-} from "../../Books/__factory__/book-details";
+} from "../../BooksModel/__factory__/book-details";
 import StockDetails from "./StockDetails";
 import {render} from "@testing-library/react";
 import React from "react";

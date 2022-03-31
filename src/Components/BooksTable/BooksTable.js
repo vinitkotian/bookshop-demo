@@ -1,8 +1,8 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import BookDetailsContainer from '../Containers/BookDetails/BookDetailsContainer';
+import BookDetailsContainer from '../../Containers/BookDetails/BookDetailsContainer';
 import { Button } from '@mui/material';
-import labels from '../Config/labels';
+import labels from '../../Config/labels';
 import { useNavigate } from 'react-router-dom';
 
 export default function BooksTable(props) {

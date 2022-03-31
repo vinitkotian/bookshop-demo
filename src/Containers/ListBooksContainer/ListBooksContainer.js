@@ -1,7 +1,7 @@
 import React from "react";
-import BookModel from "./BookModel";
-import BooksTable from "./BooksTable";
-import "../index.css"
+import BookModel from "../../BooksModel/BookModel";
+import BooksTable from "../../Components/BooksTable/BooksTable";
+import "../../index.css"
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

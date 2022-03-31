@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "../../index.css";
-import BookModel from "../../Books/BookModel"
+import BookModel from "../../BooksModel/BookModel"
 import {useNavigate, useParams} from "react-router-dom";
 import BookDetails from "../../Components/BookDetails/BookDetails";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { bookWithInventoryReviewAvailable} from "../../Books/__factory__/book-details";
+import { bookWithInventoryReviewAvailable} from "../../BooksModel/__factory__/book-details";
 import {render} from "@testing-library/react";
 import BookDetails from "./BookDetails";
 
