@@ -39,21 +39,6 @@ describe('BooksTable', () => {
     expect(getByText('J K Rowling')).toBeTruthy();
   });
 
-  it('should Loading... when book is selected', function () {
-    const { getByText } = render(
-      <Router>
-        <BooksTable
-          books={books()}
-          openBookDetailsView={jest.fn()}
-          isBookDetailsOpen={true}
-          backToHomePage={jest.fn()}
-        />
-      </Router>
-    );
-
-    expect(getByText('Loading...')).toBeTruthy();
-  });
-
   function books() {
     return [
       {

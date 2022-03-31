@@ -4,6 +4,7 @@ import BookDetails from "./BookDetails";
 import BookModel from "../../Books/BookModel";
 import {bookWithInventoryReviewNotAvailable, bookWithInventoryReviewAvailable} from "../../Books/__factory__/book-details";
 import {act} from "@testing-library/react";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 describe('Book Details Test', () => {
@@ -12,20 +13,15 @@ describe('Book Details Test', () => {
         const book = bookWithInventoryReviewAvailable();
         await act(async () => {
             await render(
-                <BookDetails
-                    backToHomePage={jest.fn()}
-                    selectedBook={book}
-                />
+                <Router>
+                    <BookDetails
+                        backToHomePage={jest.fn()}
+                        selectedBook={book}
+                    />
+                </Router>
             );
         })
     })
-
-    it('should load page when async call resolves', async function () {
-        await waitFor(() => {
-            expect(BookModel.fetchDetailsById).toHaveBeenCalled();
-            expect(screen.getByText('Back To Results')).toBeTruthy();
-        })
-    });
 
     it('should display Book Name', async function () {
         await waitFor(() => {
@@ -69,10 +65,12 @@ describe('Test Warnings On Book Details', () => {
         const book = bookWithInventoryReviewNotAvailable();
         await act(async () => {
             await render(
-                <BookDetails
-                    backToHomePage={jest.fn()}
-                    selectedBook={book}
-                />
+                <Router>
+                    <BookDetails
+                        backToHomePage={jest.fn()}
+                        selectedBook={book}
+                    />
+                </Router>
             );
         })
     })
