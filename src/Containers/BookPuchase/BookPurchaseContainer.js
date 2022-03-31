@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import BookPurchase from '../../Components/BookPurchase/BookPuchase';
 import httpService from '../../Utils/httpService';
 import OrderSummaryContainer from '../OrderSummary/OrderSummaryContainer';
+import endpoints from '../../Config/apiConfig';
+import BookPurchaseApiModel from '../../Components/BookPurchase/BookPurchaseApiModel';
 
 const BookPurchaseContainer = () => {
   let history = useNavigate();
@@ -10,7 +12,7 @@ const BookPurchaseContainer = () => {
 
   const [bookDetails, setBookDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [orderSummaryData, setOrderSummaryData] = useState(null);
+  const [orderDetails, setOrderDetails] = useState(null);
 
   const onPurchaseSubmit = async (body) => {
     const url = '/orders/place-order';
@@ -21,14 +23,17 @@ const BookPurchaseContainer = () => {
     }
   };
 
-  const showSummaryPage = (data) => {
-    setOrderSummaryData(data);
+  const showOrderSummaryPage = (data) => {
+    const newState = {
+      bookDetails: bookDetails,
+      ...data,
+    };
+    setOrderDetails(newState);
   };
 
   useEffect(() => {
     const getBookData = async () => {
-      const url = `/book/${bookId}`;
-      const response = await httpService().get(url);
+      const response = await BookPurchaseApiModel.getBookDetailByBookId(bookId);
       if (response.status === 200) {
         setBookDetails(response.data);
         setLoading(false);
@@ -39,15 +44,17 @@ const BookPurchaseContainer = () => {
 
   if (loading) return <h1>loading</h1>;
 
-  if (orderSummaryData) {
+  if (orderDetails) {
     return (
       <OrderSummaryContainer
         onSubmit={onPurchaseSubmit}
-        orderSummaryData={orderSummaryData}
+        orderDetails={orderDetails}
       />
     );
   }
 
-  return <BookPurchase bookDetails={bookDetails} onSubmit={showSummaryPage} />;
+  return (
+    <BookPurchase bookDetails={bookDetails} onSubmit={showOrderSummaryPage} />
+  );
 };
 export default BookPurchaseContainer;

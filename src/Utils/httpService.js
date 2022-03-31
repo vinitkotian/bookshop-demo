@@ -1,18 +1,12 @@
 import axios from 'axios';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
-const env = runtimeEnv();
 
-const makeGetApiCall = async (url, options) => {
-  const response = await axios.get(`${env.REACT_APP_API_URL}${url}`, options);
+const makeGetApiCall = async (endpoint, options) => {
+  const response = await axios.get(endpoint, options);
   return response;
 };
 
-const makePostApiCall = async (url, body, options) => {
-  const response = await axios.post(
-    `${env.REACT_APP_API_URL}${url}`,
-    body,
-    options
-  );
+const makePostApiCall = async (endpoint, body, options) => {
+  const response = await axios.post(endpoint, body, options);
   return response;
 };
 

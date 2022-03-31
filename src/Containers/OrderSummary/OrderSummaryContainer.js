@@ -1,47 +1,22 @@
 import React from 'react';
 import OrderSummaryBookDetails from '../../Components/OrderSummary/OrderSummaryBookDetails';
 import OrderSummaryAddress from '../../Components/OrderSummary/OrderSummaryAddress';
+import labels from '../../Config/labels';
+import { Container, Typography } from '@mui/material';
 
-export default class OrderSummaryContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      order: {},
-    };
-  }
+const OrderSummaryContainer = ({ orderDetails }) => {
+  return (
+    <Container data-testid="order-summary-container">
+      <Typography>
+        <h1 align={'center'}>{labels.orderSummary.heading}</h1>
+      </Typography>
+      <OrderSummaryAddress address={orderDetails.address} />
+      <OrderSummaryBookDetails
+        bookDetails={orderDetails.bookDetails}
+        quantity={orderDetails.quantity}
+      />
+    </Container>
+  );
+};
 
-  componentDidMount() {}
-
-  render() {
-    return (
-      <div data-testid="order-summary-container">
-        <div>Order Summary</div>
-        <OrderSummaryBookDetails data={this.getBook()} />
-        <OrderSummaryAddress data={this.getAddress()} />
-      </div>
-    );
-  }
-
-  getBook = () => {
-    return {
-      name: 'Java by Sam',
-      authorName: 'Danish Lilly',
-      quantity: 2,
-      price: {
-        currency: 'INR',
-        amount: 1000.28,
-      },
-    };
-  };
-
-  getAddress = () => {
-    return {
-      lineNoOne: 'C/001',
-      lineNoTwo: 'Parker Street',
-      city: 'Pune',
-      state: 'Maharashtra',
-      pinCode: '400192',
-      country: 'India',
-    };
-  };
-}
+export default OrderSummaryContainer;

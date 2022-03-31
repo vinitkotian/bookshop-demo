@@ -17,5 +17,13 @@ const labels = {
     orderNow: 'View Order Summary',
     purchaseNow: 'Purchase Now',
   },
+  orderSummary: {
+    heading: 'Order Summary',
+    deliveryDetails: 'Delivery details',
+  },
+  orderSummaryAddress: {
+    shippingAddress: 'Shipping Address',
+    shippingCountry: 'Shipping Country',
+  },
 };
 export default labels;

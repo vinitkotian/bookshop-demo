@@ -41,7 +41,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
         country: inputValues.country,
         pinCode: inputValues.pincode,
       },
-      userId: bookDetails.id,
+      userId: '1',
     };
     onSubmit(body);
   };
