@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import BookPurchase from '../../Components/BookPurchase/BookPuchase';
-import httpService from '../../Utils/httpService';
 import OrderSummaryContainer from '../OrderSummary/OrderSummaryContainer';
-import endpoints from '../../Config/apiConfig';
 import BookPurchaseApiModel from '../../Components/BookPurchase/BookPurchaseApiModel';
 
 const BookPurchaseContainer = () => {
@@ -15,8 +13,7 @@ const BookPurchaseContainer = () => {
   const [orderDetails, setOrderDetails] = useState(null);
 
   const onPurchaseSubmit = async (body) => {
-    const url = '/orders/place-order';
-    const response = await httpService().post(url, body);
+    const response = await BookPurchaseApiModel.placeBookOrder(body);
     if (response.status === 200) {
       const orderId = response.data.id;
       history(`/order/summary/${orderId}`);

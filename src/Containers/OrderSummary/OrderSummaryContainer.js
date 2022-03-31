@@ -4,7 +4,7 @@ import OrderSummaryAddress from '../../Components/OrderSummary/OrderSummaryAddre
 import labels from '../../Config/labels';
 import { Container, Typography } from '@mui/material';
 
-const OrderSummaryContainer = ({ orderDetails }) => {
+const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
   return (
     <Container data-testid="order-summary-container">
       <Typography>
