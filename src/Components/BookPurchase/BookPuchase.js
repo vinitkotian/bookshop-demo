@@ -90,7 +90,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
               {bookDetails.price?.amount * quantity}{' '}
             </h2>
             { !availableQuantity?
-                <div className={"warning out-of-stock"}> ! Out Of Stock</div>:null
+                <div className={"warning out-of-stock"} style={{width:500}}> ! Order Quantity is higher than stock available</div>:null
             }
           </Grid>
         </Grid>
