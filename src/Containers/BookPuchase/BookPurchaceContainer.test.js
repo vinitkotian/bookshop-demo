@@ -83,4 +83,32 @@ describe('Book Purchase Container Test', () => {
     });
     expect(screen.queryByTestId('order-summary-container')).not.toBeTruthy();
   });
+
+  it('on confirm order post api should be called', async function () {
+    await act(async () => {
+      await render(
+        <Router>
+          <BookPurchaseContainer />
+        </Router>
+      );
+    });
+    const quantity = await screen.getByTestId('quantity');
+    const addressLine1 = await screen.getByTestId('address-line-1');
+    const addressLine2 = await screen.getByTestId('address-line-2');
+    const city = await screen.getByTestId('city');
+    const state = await screen.getByTestId('state');
+    const pincode = await screen.getByTestId('pincode');
+    fireEvent.change(quantity, { target: { value: '12' } });
+    fireEvent.change(quantity, { target: { value: '0' } });
+    fireEvent.change(addressLine1, { target: { value: '1st main' } });
+    fireEvent.change(addressLine2, { target: { value: 'Guru layout' } });
+    fireEvent.change(city, { target: { value: 'Tumkur' } });
+    fireEvent.change(state, { target: { value: 'Karnataka' } });
+    fireEvent.change(pincode, { target: { value: '572103' } });
+    const button1 = await screen.getByTestId('submit');
+    fireEvent.click(button1);
+    const button = await screen.getByTestId('confirm');
+    fireEvent.click(button);
+    expect(Axios.post).toHaveBeenCalled();
+  });
 });

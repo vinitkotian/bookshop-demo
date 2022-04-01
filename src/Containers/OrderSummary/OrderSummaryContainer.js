@@ -18,7 +18,7 @@ const OrderSummaryContainer = ({ onSubmit, orderDetails }) => {
       />
       <PaymentDetails />
       <Button
-        data-testid="submit"
+        data-testid="confirm"
         variant="contained"
         fullWidth
         type="submit"
