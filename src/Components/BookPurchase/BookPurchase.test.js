@@ -11,6 +11,7 @@ describe('Book Purchase Test', () => {
       'currency': 'INR',
       'amount': 1200.0,
     },
+    'quantityAvailable': 3,
     'bookImageUrl':
       'https://dev-bootcamp-book-shop.s3.us-east-2.amazonaws.com/default_book_cover.jpg',
   };
@@ -33,7 +34,7 @@ describe('Book Purchase Test', () => {
     const pincode = await screen.getByTestId('pincode');
     const button = await screen.getByTestId('submit');
     fireEvent.change(quantity, { target: { value: '12' } });
-    fireEvent.change(quantity, { target: { value: '0' } });
+    fireEvent.change(quantity, { target: { value: '1' } });
     fireEvent.change(addressLine1, { target: { value: '1st main' } });
     fireEvent.change(addressLine2, { target: { value: 'Guru layout' } });
     fireEvent.change(city, { target: { value: 'Tumkur' } });
