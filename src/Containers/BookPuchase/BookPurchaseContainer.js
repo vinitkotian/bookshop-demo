@@ -48,7 +48,7 @@ const BookPurchaseContainer = () => {
     getBookData();
   }, [bookId]);
 
-  if (loading) return <h1>loading</h1>;
+  if (loading) return <div className={"bookdetails-flex-ctn"}><h1>Loading...</h1></div>;
 
   if (success) {
     return <BookPurchaseSuccess goTohome={goTohome} />;
