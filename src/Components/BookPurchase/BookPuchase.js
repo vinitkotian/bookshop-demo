@@ -47,6 +47,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
     onSubmit(body);
   };
 
+  const availableQuantity = bookDetails.quantityAvailable >= quantity;
   return (
     <form onSubmit={submit}>
       <Container>
@@ -88,6 +89,9 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
               {constants.currency[bookDetails.price?.currency]}{' '}
               {bookDetails.price?.amount * quantity}{' '}
             </h2>
+            { !availableQuantity?
+                <div className={"warning out-of-stock"}> ! Out Of Stock</div>:null
+            }
           </Grid>
         </Grid>
 
@@ -99,6 +103,7 @@ const BookPurchase = ({ bookDetails, onSubmit }) => {
             variant="contained"
             fullWidth
             type="submit"
+            disabled={!availableQuantity}
           >
             {labels.bookPurchase.orderNow}
           </Button>
