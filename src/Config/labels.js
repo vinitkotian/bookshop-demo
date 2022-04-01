@@ -41,7 +41,7 @@ const labels = {
     heading: 'Payment will be collected upon delivery.',
   },
   orderSuccess: {
-    successMessage: 'Order Placed SuccessFully',
+    successMessage: 'Order Placed Successfully',
     continueShopping: 'Continue Shopping',
   },
 };
